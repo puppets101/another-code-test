@@ -1,15 +1,17 @@
 import React from 'react';
-import { AppBar, Toolbar } from '@material-ui/core';
+import { AppBar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import { Container } from '@mui/material';
 
 const useStyles = makeStyles({
   root: {
-    padding: '1rem 2rem 1rem 2rem',
+    padding: '1rem 0 1rem 0',
     backgroundColor: '#130F30',
     color: '#FFFFFF',
     boxShadow: 'none',
   },
   navBarWrapper: {
+    padding: '1rem 0',
     width: '100%',
     display: 'flex',
     justifyContent: 'space-between',
@@ -21,7 +23,6 @@ const useStyles = makeStyles({
     alignItems: 'center',
   },
   navItem: {
-    margin: '0 1rem',
     cursor: 'pointer',
   },
 });
@@ -33,7 +34,7 @@ const NavBar = () => {
 
   return (
     <AppBar position='static' className={classes.root}>
-      <Toolbar>
+      <Container style={{ padding: 0 }}>
         <div className={classes.navBarWrapper}>
           <div className={classes.navItemWrapper}>
             {firstNavItems.map((item) => (
@@ -50,7 +51,7 @@ const NavBar = () => {
             ))}
           </div>
         </div>
-      </Toolbar>
+      </Container>
     </AppBar>
   );
 };
