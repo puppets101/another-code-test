@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@mui/material';
 import { makeStyles } from '@material-ui/styles';
+import { VentilationPump } from '../Models/ventilation';
 import PageTitle from '../Components/PageTitle';
 import OverviewFilters from '../Components/OverviewFilters';
 import VentilationItem from '../Components/VentilationItem';
-import { ventilationPumps } from '../ventilation-pumps';
+import CreateNewPumpDialog from '../Components/CreateNewPumpDialog';
 
 const useStyles = makeStyles({
   root: {
@@ -22,22 +23,40 @@ const useStyles = makeStyles({
 
 const Overview = () => {
   const classes = useStyles();
+  const [allVentilationPumps, setAllVentilationPumps] = useState<
+    VentilationPump[]
+  >([]);
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const handleCreateNewPump = (pump: VentilationPump) => {
+    console.log(pump);
+    setAllVentilationPumps([...allVentilationPumps, pump]);
+    setDialogOpen(false);
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.flexBetween}>
         <PageTitle title='Ventilation pump overwiew' />
         <div>
-          <Button color='primary'>+ Create new pump</Button>
+          <Button onClick={() => setDialogOpen(true)} color='primary'>
+            + Create new pump
+          </Button>
         </div>
       </div>
       <div className={classes.filtersWrapper}>
         <OverviewFilters />
       </div>
       <div>
-        {ventilationPumps.map((ventilationPump, index) => (
+        {allVentilationPumps.map((ventilationPump, index) => (
           <VentilationItem key={index} ventilationPump={ventilationPump} />
         ))}
       </div>
+      <CreateNewPumpDialog
+        open={dialogOpen}
+        onClose={() => setDialogOpen(false)}
+        onCreateNewPump={handleCreateNewPump}
+      />
     </div>
   );
 };
