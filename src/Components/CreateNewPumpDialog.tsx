@@ -37,6 +37,9 @@ const CreateNewPumpDialog: FC<CreateNewPumpDialogProps> = ({
     if (value === 'A') return setNewPump({ ...newPump, area: AreaType.A });
     if (value === 'b') return setNewPump({ ...newPump, area: AreaType.B });
     if (value === 'C') return setNewPump({ ...newPump, area: AreaType.C });
+    if (value === 'D') return setNewPump({ ...newPump, area: AreaType.D });
+    if (value === 'E') return setNewPump({ ...newPump, area: AreaType.E });
+    if (value === 'F') return setNewPump({ ...newPump, area: AreaType.F });
   };
 
   const clearInputFields = () => {
@@ -71,6 +74,9 @@ const CreateNewPumpDialog: FC<CreateNewPumpDialogProps> = ({
                 <MenuItem value='A'>A</MenuItem>
                 <MenuItem value='B'>B</MenuItem>
                 <MenuItem value='C'>C</MenuItem>
+                <MenuItem value='D'>D</MenuItem>
+                <MenuItem value='E'>E</MenuItem>
+                <MenuItem value='F'>F</MenuItem>
               </Select>
             </FormControl>
           </Grid>

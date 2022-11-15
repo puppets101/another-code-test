@@ -22,8 +22,6 @@ const OverviewFilters: FC<OverviewFiltersProps> = ({
     status: true,
   });
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
-
     const field = event.target.name;
     const value = event.target.value;
     setFilter({ ...filter, [field]: value });
@@ -32,20 +30,35 @@ const OverviewFilters: FC<OverviewFiltersProps> = ({
 
   const handleAreaChange = (event: SelectChangeEvent) => {
     const value = event.target.value;
-    console.log(value);
 
-    if (value === 'A') {
-      setFilter({ ...filter, area: AreaType.A });
-      onFilterChange({ ...filter, area: AreaType.A });
-    } else if (value === 'B') {
-      setFilter({ ...filter, area: AreaType.B });
-      onFilterChange({ ...filter, area: AreaType.B });
-    } else if (value === 'C') {
-      setFilter({ ...filter, area: AreaType.C });
-      onFilterChange({ ...filter, area: AreaType.C });
-    } else {
-      setFilter({ ...filter, area: AreaType.ALL });
-      onFilterChange({ ...filter, area: AreaType.ALL });
+    switch (value) {
+      case 'A':
+        setFilter({ ...filter, area: AreaType.A });
+        onFilterChange({ ...filter, area: AreaType.A });
+        break;
+      case 'B':
+        setFilter({ ...filter, area: AreaType.B });
+        onFilterChange({ ...filter, area: AreaType.B });
+        break;
+      case 'C':
+        setFilter({ ...filter, area: AreaType.C });
+        onFilterChange({ ...filter, area: AreaType.C });
+        break;
+      case 'D':
+        setFilter({ ...filter, area: AreaType.D });
+        onFilterChange({ ...filter, area: AreaType.D });
+        break;
+      case 'E':
+        setFilter({ ...filter, area: AreaType.E });
+        onFilterChange({ ...filter, area: AreaType.E });
+        break;
+      case 'F':
+        setFilter({ ...filter, area: AreaType.F });
+        onFilterChange({ ...filter, area: AreaType.F });
+        break;
+      default:
+        setFilter({ ...filter, area: AreaType.ALL });
+        onFilterChange({ ...filter, area: AreaType.ALL });
     }
   };
 
@@ -88,6 +101,9 @@ const OverviewFilters: FC<OverviewFiltersProps> = ({
             <MenuItem value='A'>A</MenuItem>
             <MenuItem value='B'>B</MenuItem>
             <MenuItem value='C'>C</MenuItem>
+            <MenuItem value='D'>D</MenuItem>
+            <MenuItem value='E'>E</MenuItem>
+            <MenuItem value='F'>F</MenuItem>
           </Select>
         </FormControl>
       </Grid>
