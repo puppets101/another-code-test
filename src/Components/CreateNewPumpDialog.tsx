@@ -35,7 +35,7 @@ const CreateNewPumpDialog: FC<CreateNewPumpDialogProps> = ({
   const handleAreaChange = (event: SelectChangeEvent) => {
     const value = event.target.value;
     if (value === 'A') return setNewPump({ ...newPump, area: AreaType.A });
-    if (value === 'b') return setNewPump({ ...newPump, area: AreaType.B });
+    if (value === 'B') return setNewPump({ ...newPump, area: AreaType.B });
     if (value === 'C') return setNewPump({ ...newPump, area: AreaType.C });
     if (value === 'D') return setNewPump({ ...newPump, area: AreaType.D });
     if (value === 'E') return setNewPump({ ...newPump, area: AreaType.E });
