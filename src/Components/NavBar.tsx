@@ -22,7 +22,12 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
   },
-  navItem: {
+  navItemLeft: {
+    padding: '0 1rem 0 0',
+    cursor: 'pointer',
+  },
+  navItemRight: {
+    padding: '0 0 0 1rem',
     cursor: 'pointer',
   },
 });
@@ -38,14 +43,14 @@ const NavBar = () => {
         <div className={classes.navBarWrapper}>
           <div className={classes.navItemWrapper}>
             {firstNavItems.map((item) => (
-              <div key={item} className={classes.navItem}>
+              <div key={item} className={classes.navItemLeft}>
                 {item}
               </div>
             ))}
           </div>
           <div className={classes.navItemWrapper}>
             {lastNavItems.map((item) => (
-              <div key={item} className={classes.navItem}>
+              <div key={item} className={classes.navItemRight}>
                 {item}
               </div>
             ))}
