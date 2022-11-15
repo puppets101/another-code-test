@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { Button } from '@mui/material';
 import { makeStyles } from '@material-ui/styles';
-import { VentilationPump } from '../Models/ventilation';
+import {
+  AreaType,
+  OverviewFilter,
+  VentilationPump,
+} from '../Models/ventilation';
+import { ventilationPumps } from '../ventilation-pumps';
 import PageTitle from '../Components/PageTitle';
 import OverviewFilters from '../Components/OverviewFilters';
 import VentilationItem from '../Components/VentilationItem';
@@ -23,15 +28,42 @@ const useStyles = makeStyles({
 
 const Overview = () => {
   const classes = useStyles();
-  const [allVentilationPumps, setAllVentilationPumps] = useState<
-    VentilationPump[]
-  >([]);
+  const [allVentilationPumps, setAllVentilationPumps] =
+    useState<VentilationPump[]>(ventilationPumps);
+  const [filter, setFilter] = useState<OverviewFilter>({
+    number: '',
+    area: AreaType.ALL,
+    status: true,
+  });
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleCreateNewPump = (pump: VentilationPump) => {
-    console.log(pump);
     setAllVentilationPumps([...allVentilationPumps, pump]);
     setDialogOpen(false);
+  };
+
+  const handleFilterChange = (filters: OverviewFilter) => {
+    setFilter({ ...filters });
+  };
+
+  const filteredVentilationPumps = (pumps: VentilationPump[]) => {
+    let filteredPumps = [...pumps];
+    if (filter.number) {
+      filteredPumps = filteredPumps.filter(({ number }: OverviewFilter) =>
+        number.toLocaleLowerCase().includes(filter.number.toLocaleLowerCase())
+      );
+    }
+    if (filter.area) {
+      filteredPumps = filteredPumps.filter(({ area }: OverviewFilter) =>
+        area.toLocaleLowerCase().includes(filter.area.toLocaleLowerCase())
+      );
+    }
+    if (filter.status !== null) {
+      filteredPumps = filteredPumps.filter(
+        ({ status }: OverviewFilter) => status === filter.status
+      );
+    }
+    return filteredPumps || [];
   };
 
   return (
@@ -45,12 +77,14 @@ const Overview = () => {
         </div>
       </div>
       <div className={classes.filtersWrapper}>
-        <OverviewFilters />
+        <OverviewFilters onFilterChange={handleFilterChange} />
       </div>
       <div>
-        {allVentilationPumps.map((ventilationPump, index) => (
-          <VentilationItem key={index} ventilationPump={ventilationPump} />
-        ))}
+        {filteredVentilationPumps(allVentilationPumps).map(
+          (ventilationPump, index) => (
+            <VentilationItem key={index} ventilationPump={ventilationPump} />
+          )
+        )}
       </div>
       <CreateNewPumpDialog
         open={dialogOpen}
