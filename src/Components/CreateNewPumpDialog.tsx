@@ -5,10 +5,15 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControl,
   Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
   TextField,
 } from '@mui/material';
-import { VentilationPump } from '../Models/ventilation';
+import { AreaType, VentilationPump } from '../Models/ventilation';
 
 type CreateNewPumpDialogProps = {
   open: boolean;
@@ -25,6 +30,13 @@ const CreateNewPumpDialog: FC<CreateNewPumpDialogProps> = ({
     const field = event.target.name;
     const value = event.target.value;
     setNewPump({ ...newPump, [field]: value });
+  };
+
+  const handleAreaChange = (event: SelectChangeEvent) => {
+    const value = event.target.value;
+    if (value === 'A') return setNewPump({ ...newPump, area: AreaType.A });
+    if (value === 'b') return setNewPump({ ...newPump, area: AreaType.B });
+    if (value === 'C') return setNewPump({ ...newPump, area: AreaType.C });
   };
 
   const clearInputFields = () => {
@@ -48,15 +60,19 @@ const CreateNewPumpDialog: FC<CreateNewPumpDialogProps> = ({
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              id='area'
-              name='area'
-              fullWidth
-              label='Area'
-              margin='dense'
-              onChange={handleInputChange}
-              value={newPump.area}
-            />
+            <FormControl fullWidth margin='dense'>
+              <InputLabel>Area</InputLabel>
+              <Select
+                id='area'
+                label='Area'
+                defaultValue=''
+                onChange={handleAreaChange}
+              >
+                <MenuItem value='A'>A</MenuItem>
+                <MenuItem value='B'>B</MenuItem>
+                <MenuItem value='C'>C</MenuItem>
+              </Select>
+            </FormControl>
           </Grid>
         </Grid>
         <DialogActions
