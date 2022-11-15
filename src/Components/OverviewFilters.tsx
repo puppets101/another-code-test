@@ -78,7 +78,7 @@ const OverviewFilters: FC<OverviewFiltersProps> = ({
   };
   return (
     <Grid container spacing={2}>
-      <Grid item xs={6}>
+      <Grid item md={6} xs={12}>
         <TextField
           id='number'
           name='number'
@@ -89,7 +89,7 @@ const OverviewFilters: FC<OverviewFiltersProps> = ({
           onChange={handleInputChange}
         />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item lg={3} md={6} xs={12}>
         <FormControl fullWidth margin='dense'>
           <InputLabel>Area</InputLabel>
           <Select
@@ -109,7 +109,7 @@ const OverviewFilters: FC<OverviewFiltersProps> = ({
           </Select>
         </FormControl>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item lg={3} md={6} xs={12}>
         <FormControl fullWidth margin='dense'>
           <InputLabel>Status</InputLabel>
           <Select
