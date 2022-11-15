@@ -44,11 +44,12 @@ const VentilationItem: FC<VentilationItemProps> = ({
           </div>
           <div className={classes.item}>
             <Typography variant='body2'>Status</Typography>
-            <Typography>{status ? 'Active' : 'Disabled'}</Typography>
+            <Typography sx={{ color: status ? 'green' : 'red' }}>
+              {status ? 'Active' : 'Disabled'}
+            </Typography>
           </div>
           <Button
             variant='contained'
-            color='primary'
             className={classes.btn}
             onClick={() => onToggleStatus(ventilationPump)}
           >
