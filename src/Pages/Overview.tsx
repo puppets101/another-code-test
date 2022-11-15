@@ -51,14 +51,22 @@ const Overview = () => {
 
   const handleToggleStatus = (ventilationPump: VentilationPump) => {
     const pumps = [...allVentilationPumps];
-    const idx = pumps.findIndex(
+    const index = pumps.findIndex(
       (pump) => pump.id.toString() === ventilationPump.id.toString()
     );
-    console.log(idx);
-    pumps.splice(idx, 1, {
+    pumps.splice(index, 1, {
       ...ventilationPump,
       status: !ventilationPump.status,
     });
+    setAllVentilationPumps(pumps);
+  };
+
+  const handleDeletePump = (ventilationPump: VentilationPump) => {
+    const pumps = [...allVentilationPumps];
+    const index = pumps.findIndex(
+      (pump) => pump.id.toString() === ventilationPump.id.toString()
+    );
+    pumps.splice(index, 1);
     setAllVentilationPumps(pumps);
   };
 
@@ -102,6 +110,7 @@ const Overview = () => {
               key={index}
               ventilationPump={ventilationPump}
               onToggleStatus={handleToggleStatus}
+              onDeletePump={handleDeletePump}
             />
           )
         )}
