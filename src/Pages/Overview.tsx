@@ -32,7 +32,7 @@ const Overview = () => {
     useState<VentilationPump[]>(ventilationPumps);
   const [filter, setFilter] = useState<OverviewFilter>({
     number: '',
-    area: AreaType.ALL,
+    area: AreaType.NO_FILTER,
     status: true,
   });
   const [dialogOpen, setDialogOpen] = useState(false);

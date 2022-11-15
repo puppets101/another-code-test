@@ -12,7 +12,7 @@ export type OverviewFilter = {
 };
 
 export enum AreaType {
-  ALL = '',
+  NO_FILTER = '',
   A = 'A',
   B = 'B',
   C = 'C',

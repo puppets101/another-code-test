@@ -18,7 +18,7 @@ const OverviewFilters: FC<OverviewFiltersProps> = ({
 }: OverviewFiltersProps) => {
   const [filter, setFilter] = useState<OverviewFilter>({
     number: '',
-    area: AreaType.ALL,
+    area: AreaType.NO_FILTER,
     status: true,
   });
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -57,8 +57,8 @@ const OverviewFilters: FC<OverviewFiltersProps> = ({
         onFilterChange({ ...filter, area: AreaType.F });
         break;
       default:
-        setFilter({ ...filter, area: AreaType.ALL });
-        onFilterChange({ ...filter, area: AreaType.ALL });
+        setFilter({ ...filter, area: AreaType.NO_FILTER });
+        onFilterChange({ ...filter, area: AreaType.NO_FILTER });
     }
   };
 
@@ -94,10 +94,10 @@ const OverviewFilters: FC<OverviewFiltersProps> = ({
           <Select
             id='area'
             label='Area'
-            defaultValue='ALL'
+            defaultValue='NO_FILTER'
             onChange={handleAreaChange}
           >
-            <MenuItem value='ALL'>Show all</MenuItem>
+            <MenuItem value='NO_FILTER'>No filter</MenuItem>
             <MenuItem value='A'>A</MenuItem>
             <MenuItem value='B'>B</MenuItem>
             <MenuItem value='C'>C</MenuItem>
@@ -116,7 +116,7 @@ const OverviewFilters: FC<OverviewFiltersProps> = ({
             defaultValue='ACTIVE'
             onChange={handleStatusChange}
           >
-            <MenuItem value='ALL'>Show all</MenuItem>
+            <MenuItem value='NO_FILTER'>No filter</MenuItem>
             <MenuItem value='ACTIVE'>Active</MenuItem>
             <MenuItem value='DISABLED'>Disabled</MenuItem>
           </Select>
