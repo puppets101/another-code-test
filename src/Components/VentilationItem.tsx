@@ -21,12 +21,15 @@ const useStyles = makeStyles({
 
 type VentilationItemProps = {
   ventilationPump: VentilationPump;
+  onToggleStatus: (ventilationPump: VentilationPump) => void;
 };
 const VentilationItem: FC<VentilationItemProps> = ({
   ventilationPump,
+  onToggleStatus,
 }: VentilationItemProps) => {
   const classes = useStyles();
   const { number, area, status } = ventilationPump;
+
   return (
     <div className={classes.itemContainer}>
       <Paper variant='outlined'>
@@ -43,7 +46,12 @@ const VentilationItem: FC<VentilationItemProps> = ({
             <Typography variant='body2'>Status</Typography>
             <Typography>{status ? 'Active' : 'Disabled'}</Typography>
           </div>
-          <Button variant='contained' color='primary' className={classes.btn}>
+          <Button
+            variant='contained'
+            color='primary'
+            className={classes.btn}
+            onClick={() => onToggleStatus(ventilationPump)}
+          >
             {status ? 'Deactivate' : 'Activate'}
           </Button>
         </Box>

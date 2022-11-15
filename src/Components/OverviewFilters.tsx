@@ -51,7 +51,6 @@ const OverviewFilters: FC<OverviewFiltersProps> = ({
 
   const handleStatusChange = (event: SelectChangeEvent) => {
     const value = event.target.value;
-    console.log(value);
 
     if (value === 'ACTIVE') {
       setFilter({ ...filter, status: true });

@@ -38,12 +38,28 @@ const Overview = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleCreateNewPump = (pump: VentilationPump) => {
-    setAllVentilationPumps([...allVentilationPumps, pump]);
+    const pumps = [...allVentilationPumps];
+    const id = (allVentilationPumps.length += 1);
+    pumps.push({ ...pump, id: id.toString() });
+    setAllVentilationPumps([...pumps]);
     setDialogOpen(false);
   };
 
   const handleFilterChange = (filters: OverviewFilter) => {
     setFilter({ ...filters });
+  };
+
+  const handleToggleStatus = (ventilationPump: VentilationPump) => {
+    const pumps = [...allVentilationPumps];
+    const idx = pumps.findIndex(
+      (pump) => pump.id.toString() === ventilationPump.id.toString()
+    );
+    console.log(idx);
+    pumps.splice(idx, 1, {
+      ...ventilationPump,
+      status: !ventilationPump.status,
+    });
+    setAllVentilationPumps(pumps);
   };
 
   const filteredVentilationPumps = (pumps: VentilationPump[]) => {
@@ -82,7 +98,11 @@ const Overview = () => {
       <div>
         {filteredVentilationPumps(allVentilationPumps).map(
           (ventilationPump, index) => (
-            <VentilationItem key={index} ventilationPump={ventilationPump} />
+            <VentilationItem
+              key={index}
+              ventilationPump={ventilationPump}
+              onToggleStatus={handleToggleStatus}
+            />
           )
         )}
       </div>

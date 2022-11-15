@@ -1,4 +1,5 @@
 export type VentilationPump = {
+  id: string;
   number: string;
   area: AreaType;
   status: boolean;
