@@ -35,7 +35,7 @@ const useStyles = makeStyles({
 const NavBar = () => {
   const classes = useStyles();
   const firstNavItems = ['LOGO', 'COMPANY'];
-  const lastNavItems = ['Home', 'Overview', 'Deshboard', 'Sign Out'];
+  const lastNavItems = ['Home', 'Overview', 'Dashboard', 'Sign Out'];
 
   return (
     <AppBar position='static' className={classes.root}>

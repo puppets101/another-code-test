@@ -85,6 +85,7 @@ const OverviewFilters: FC<OverviewFiltersProps> = ({
           fullWidth
           label='Search pump number'
           margin='dense'
+          sx={{ backgroundColor: '#ffffff' }}
           onChange={handleInputChange}
         />
       </Grid>
@@ -95,6 +96,7 @@ const OverviewFilters: FC<OverviewFiltersProps> = ({
             id='area'
             label='Area'
             defaultValue='NO_FILTER'
+            sx={{ backgroundColor: '#ffffff' }}
             onChange={handleAreaChange}
           >
             <MenuItem value='NO_FILTER'>No filter</MenuItem>
@@ -114,6 +116,7 @@ const OverviewFilters: FC<OverviewFiltersProps> = ({
             id='status'
             label='Status'
             defaultValue='ACTIVE'
+            sx={{ backgroundColor: '#ffffff' }}
             onChange={handleStatusChange}
           >
             <MenuItem value='NO_FILTER'>No filter</MenuItem>
